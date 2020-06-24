@@ -32,9 +32,9 @@ public class ShareService {
 
     public ShareDTO findByid(Integer id) {
 
-
         Share share = this.shareMapper.selectByPrimaryKey(id);
         Integer userId = share.getUserId();
+//        默认懒加载首次请求后才创建访问client导致首次加载过慢
         UserDTO userDTO = restTemplate.getForObject(
                 "http://user-center/users/{userId}",
                 UserDTO.class,

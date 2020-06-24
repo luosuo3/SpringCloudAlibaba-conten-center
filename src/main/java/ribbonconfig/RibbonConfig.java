@@ -5,7 +5,10 @@ package ribbonconfig;
  * @date 2020/6/24 11:19 上午
  */
 
+import com.cloud.contentcenter.config.NacosWeightedRule;
+import com.netflix.loadbalancer.IPing;
 import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.PingUrl;
 import com.netflix.loadbalancer.RandomRule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +17,13 @@ import org.springframework.context.annotation.Configuration;
 public class RibbonConfig {
     @Bean
     public IRule ribbonRule() {
-        return new RandomRule();
+        return new NacosWeightedRule();
+//        return new RandomRule();
     }
+    /*
+    @Bean
+    public IPing iPing() {
+        return new PingUrl();
+    }*/
+
 }
