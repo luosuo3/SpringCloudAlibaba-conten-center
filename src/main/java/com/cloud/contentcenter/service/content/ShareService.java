@@ -2,6 +2,7 @@ package com.cloud.contentcenter.service.content;
 
 import com.cloud.contentcenter.dto.ShareDTO;
 import com.cloud.contentcenter.dto.UserDTO;
+import com.cloud.contentcenter.feignclient.UserCenterFeignClient;
 import com.cloud.contentcenter.mapper.ShareMapper;
 import com.cloud.contentcenter.model.Share;
 import lombok.extern.slf4j.Slf4j;
@@ -25,19 +26,17 @@ public class ShareService {
     private RestTemplate restTemplate;
     @Resource
     private DiscoveryClient discoveryClient;
-
+    @Resource
+    private UserCenterFeignClient userCenterFeignClient;
     public ShareDTO findByid(Integer id) {
 
         Share share = this.shareMapper.selectByPrimaryKey(id);
         Integer userId = share.getUserId();
 //        默认懒加载首次请求后才创建访问client导致首次加载过慢
-        UserDTO userDTO = restTemplate.getForObject(
-                "http://user-center/users/{userId}",
-                UserDTO.class,
-                userId
-        );
+
         ShareDTO shareDTO = new ShareDTO();
         BeanUtils.copyProperties(share, shareDTO);
+        UserDTO userDTO = this.userCenterFeignClient.findById(userId);
         shareDTO.setWxNickname(userDTO.getWxNickname());
         return shareDTO;
     }

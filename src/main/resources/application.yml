@@ -9,6 +9,7 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+#        namespace: 5aee0e1b-51f7-414b-908b-c773f389b047
         cluster-name: BEIJING
   application:
     name: content-center

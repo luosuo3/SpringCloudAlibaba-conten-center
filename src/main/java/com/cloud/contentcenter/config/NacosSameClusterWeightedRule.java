@@ -6,20 +6,15 @@ import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import com.alibaba.nacos.client.naming.core.Balancer;
-import com.alibaba.nacos.client.naming.utils.Chooser;
-import com.alibaba.nacos.client.naming.utils.Pair;
-import com.alibaba.nacos.client.utils.LogUtils;
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.BaseLoadBalancer;
 import com.netflix.loadbalancer.Server;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -29,7 +24,7 @@ import java.util.stream.Collectors;
  * @date 2020/6/24 9:15 下午
  */
 @Slf4j
-public class NacosSameClusterWeightedRule  extends AbstractLoadBalancerRule {
+public class NacosSameClusterWeightedRule extends AbstractLoadBalancerRule {
     @Resource
     private NacosDiscoveryProperties nacosDiscoveryProperties;
 
@@ -54,7 +49,7 @@ public class NacosSameClusterWeightedRule  extends AbstractLoadBalancerRule {
                     .filter(instance -> Objects.equals(instance.getClusterName(), clusterName))
                     .collect(Collectors.toList());
 //        3.如果B是空就用 A
-            List<Instance> instancesToBeChose = new ArrayList<>();
+            List<Instance> instancesToBeChose;
             if (CollectionUtils.isEmpty(sameClusterInstances)) {
                 instancesToBeChose = instances;
                 log.warn("发生跨集群的调用: name= {} , clusterName = {} , instances = {}",

@@ -1,1 +1,2 @@
-SpringBootApplication->
+SpringBootApplication->NacosWeightedRule->NacosWeightedRule:NacosDiscoveryProperties()
+NacosWeightedRule->
