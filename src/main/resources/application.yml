@@ -11,8 +11,15 @@ spring:
         server-addr: localhost:8848
 #        namespace: 5aee0e1b-51f7-414b-908b-c773f389b047
         cluster-name: BEIJING
+    sentinel:
+      transport:
+#        指定控制台sentinel的地址
+        dashboard: localhost:8080
   application:
     name: content-center
+  main:
+    allow-bean-definition-overriding: true
+
 mybatis:
   mapper-locations : classpath:/mapper/**Mapper.xml
 server:
@@ -26,3 +33,24 @@ ribbon:
     enabled: true
 #    对user-center饥饿加载
     clients: user-center
+logging:
+  level:
+    com.cloud : debug
+    com.cloud.contentcenter.feignclient.UserCenterFeignClient : debug
+feign:
+  client:
+    config:
+#      user-center:
+       default:
+        loggerLevel: basic
+  httpclient:
+#    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+  okhttp:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

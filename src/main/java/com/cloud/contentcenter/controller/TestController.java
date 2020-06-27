@@ -1,5 +1,8 @@
 package com.cloud.contentcenter.controller;
 
+import com.cloud.contentcenter.dto.UserDTO;
+import com.cloud.contentcenter.feignclient.TestBaiduFeifnClient;
+import com.cloud.contentcenter.feignclient.TestUserCenterFeigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -20,6 +23,10 @@ import java.util.List;
 @RestController
 public class TestController {
     @Resource
+    TestBaiduFeifnClient testBaiduFeifnClient;
+    @Resource
+    TestUserCenterFeigin testUserCenterFeigin;
+    @Resource
     private DiscoveryClient discoveryClient;
     @GetMapping("test2")
     public List<ServiceInstance> getInstances() {
@@ -30,5 +37,12 @@ public class TestController {
     public List<String> getSeivices() {
         return discoveryClient.getServices();
     }
-
+    @GetMapping("test-get")
+    public UserDTO query(UserDTO userDTO) {
+        return testUserCenterFeigin.query(userDTO);
+    }
+    @GetMapping("baidu")
+    public String baiduIndex() {
+        return testBaiduFeifnClient.index();
+    }
 }
