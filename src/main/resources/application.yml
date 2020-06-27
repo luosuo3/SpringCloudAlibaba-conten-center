@@ -12,6 +12,9 @@ spring:
 #        namespace: 5aee0e1b-51f7-414b-908b-c773f389b047
         cluster-name: BEIJING
     sentinel:
+      filter:
+#        暂时关闭对 Sping MVC 端点的保护
+        enabled: false
       transport:
 #        指定控制台sentinel的地址
         dashboard: localhost:8080
@@ -38,6 +41,9 @@ logging:
     com.cloud : debug
     com.cloud.contentcenter.feignclient.UserCenterFeignClient : debug
 feign:
+  sentinel:
+#    为Feign整合sentinel
+    enabled: true
   client:
     config:
 #      user-center:
@@ -54,3 +60,6 @@ management:
     web:
       exposure:
         include: '*'
+#resttemplate:
+#  sentinel:
+#    enabled: false
