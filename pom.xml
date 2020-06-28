@@ -96,7 +96,17 @@
             <artifactId>sentinel-core</artifactId>
             <version>1.7.1</version>
         </dependency>
-
+        <!--sentinel 配置拉模式 使用的此模式让sentinel配置持久化,配置文件存到本地文件中-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-extension</artifactId>
+        </dependency>
+<!--        sentinel 配置推模式-->
+     <!--   <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+-->
     </dependencies>
     <dependencyManagement>
         <!--Spring Cloud-->
