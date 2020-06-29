@@ -3,7 +3,6 @@ package com.cloud.contentcenter.feignclient.fallback;
 import com.cloud.contentcenter.dto.UserDTO;
 import com.cloud.contentcenter.feignclient.UserCenterFeignClient;
 import org.springframework.stereotype.Component;
-import sun.misc.Contended;
 
 /**
  * @author 王峥

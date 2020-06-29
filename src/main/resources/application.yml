@@ -13,8 +13,9 @@ spring:
         cluster-name: BEIJING
     sentinel:
       filter:
-#        暂时关闭对 Sping MVC 端点的保护
-        enabled: false
+        url-patterns: /**
+#        暂时打开对 Sping MVC 端点的保护
+        enabled: true
       transport:
 #        指定控制台sentinel的地址
         dashboard: localhost:8080
@@ -50,11 +51,12 @@ feign:
        default:
         loggerLevel: basic
   httpclient:
-#    enabled: true
+    enabled: false
     max-connections: 200
     max-connections-per-route: 50
   okhttp:
     enabled: true
+
 management:
   endpoints:
     web:
@@ -63,3 +65,8 @@ management:
 #resttemplate:
 #  sentinel:
 #    enabled: false
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+#    必须指定group
+    group: test-group
