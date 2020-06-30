@@ -124,7 +124,12 @@
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-spring-boot-starter</artifactId>
-            <version>2.1.0</version>
+            <version>2.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+            <version>0.9.0.RELEASE</version>
         </dependency>
 <!--        sentinel 配置推模式-->
      <!--   <dependency>

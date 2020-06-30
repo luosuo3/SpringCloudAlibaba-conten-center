@@ -3,14 +3,19 @@ package com.cloud.contentcenter.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * share
  * @author 
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Share implements Serializable {
     /**
      * id
