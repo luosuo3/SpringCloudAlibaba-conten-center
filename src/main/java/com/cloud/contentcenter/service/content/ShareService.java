@@ -1,5 +1,6 @@
 package com.cloud.contentcenter.service.content;
 
+import com.alibaba.fastjson.JSON;
 import com.cloud.contentcenter.dto.ShareAuditDTO;
 import com.cloud.contentcenter.dto.ShareDTO;
 import com.cloud.contentcenter.dto.UserAddBonusMsgDTO;
@@ -15,6 +16,7 @@ import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +45,8 @@ public class ShareService {
     private RocketMQTemplate rocketMQTemplate;
     @Resource
     private RocketmqTransactionLogMapper rocketmqTransactionLogMapper;
+    @Resource
+    private Source source;
 
     public ShareDTO findByid(Integer id) {
 
@@ -78,7 +82,8 @@ public class ShareService {
 //        如果是PASS,那么发送消息给Rockermq,让用户中心去消费并为发布人添加积分
         if (AuditStatusEnum.PASS.equals(auditDTO.getAuditStatusEnum())) {
             String transactionId = UUID.randomUUID().toString();
-            this.rocketMQTemplate.sendMessageInTransaction(
+//            原rockerMQ写法
+           /* this.rocketMQTemplate.sendMessageInTransaction(
                     "tx-add-bonus-group",
                     "add-bonus",
                     MessageBuilder.withPayload(
@@ -92,7 +97,21 @@ public class ShareService {
                             .setHeader("share_id", id)
                             .build(),
                     auditDTO
-            );
+            );*/
+//            Spring Cloud Stream 写法
+            this.source.output()
+                    .send(
+                            MessageBuilder.withPayload(
+                                    UserAddBonusMsgDTO.builder()
+                                            .userId(share.getUserId())
+                                            .bonus(50)
+                                            .build()
+                            )
+                                    .setHeader(RocketMQHeaders.TRANSACTION_ID, transactionId)
+                                    .setHeader("share_id", id)
+                                    .setHeader("dto", JSON.toJSONString(auditDTO))
+                                    .build()
+                    );
         } else {
             //        审核资源,将状态设为PASS/REJECT
             auditByIdInDB(auditDTO, id);
@@ -112,7 +131,7 @@ public class ShareService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void auditByIdWithRocketMqLog(Integer shareId, ShareAuditDTO shareAuditDTO,String id) {
+    public void auditByIdWithRocketMqLog(Integer shareId, ShareAuditDTO shareAuditDTO, String id) {
         this.rocketmqTransactionLogMapper.insert(
                 RocketmqTransactionLog.builder()
                         .transactionId(id)

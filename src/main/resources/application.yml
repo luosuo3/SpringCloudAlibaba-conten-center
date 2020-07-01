@@ -19,6 +19,21 @@ spring:
       transport:
 #        指定控制台sentinel的地址
         dashboard: localhost:8080
+    stream:
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+        bindings:
+          output:
+            producer:
+              transactional: true
+              group: tx-add-bonus-group
+      bindings:
+        output:
+#          指定topic
+          destination: add-bonus
+#        my-output:
+#          destination: stream-my-topic
   application:
     name: content-center
   main:
@@ -65,8 +80,11 @@ management:
 #resttemplate:
 #  sentinel:
 #    enabled: false
-rocketmq:
-  name-server: 127.0.0.1:9876
-  producer:
-#    必须指定group
-    group: test-group
+
+
+#rockermq配置
+#rocketmq:
+#  name-server: 127.0.0.1:9876
+#  producer:
+##    必须指定group
+#    group: test-group

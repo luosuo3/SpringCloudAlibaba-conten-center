@@ -19,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.stream.messaging.Source;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -176,4 +178,20 @@ public class TestController {
         );
         return userDTO;
     }
+
+    @Resource
+    private Source source;
+
+    @GetMapping("/test-stream")
+    public String testStream() {
+        this.source.output()
+                .send(
+                        MessageBuilder
+                                .withPayload("测试消息体")
+                                .build()
+                );
+        return "success";
+    }
+
+
 }

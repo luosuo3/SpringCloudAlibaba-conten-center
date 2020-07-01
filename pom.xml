@@ -161,8 +161,6 @@
                 <artifactId>feign-httpclient</artifactId>
             </dependency>
 
-
-
         </dependencies>
     </dependencyManagement>
 

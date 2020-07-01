@@ -1,5 +1,6 @@
 package com.cloud.contentcenter.rocketmq;
 
+import com.alibaba.fastjson.JSON;
 import com.cloud.contentcenter.dto.ShareAuditDTO;
 import com.cloud.contentcenter.mapper.RocketmqTransactionLogMapper;
 import com.cloud.contentcenter.model.RocketmqTransactionLog;
@@ -33,10 +34,12 @@ public class AddBonusTransactionListenner implements RocketMQLocalTransactionLis
         MessageHeaders headers = message.getHeaders();
         Integer  shareId = Integer.valueOf((String) headers.get("share_id"));
         String  transactionid = (String)headers.get(RocketMQHeaders.TRANSACTION_ID);
+        String dtoString = (String)headers.get("dto");
+        ShareAuditDTO shareAuditDTO = JSON.parseObject(dtoString, ShareAuditDTO.class);
         log.info("id={}",shareId);
         try {
-            shareService.auditByIdInDB((ShareAuditDTO)o,shareId);
-            shareService.auditByIdWithRocketMqLog(shareId,(ShareAuditDTO) o,transactionid);
+            shareService.auditByIdInDB(shareAuditDTO,shareId);
+            shareService.auditByIdWithRocketMqLog(shareId,shareAuditDTO,transactionid);
             return RocketMQLocalTransactionState.COMMIT;
         } catch (Exception e) {
             return RocketMQLocalTransactionState.ROLLBACK;
