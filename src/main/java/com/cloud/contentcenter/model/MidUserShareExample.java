@@ -286,6 +286,7 @@ public class MidUserShareExample {
     }
 
     /**
+     *
      */
     public static class Criteria extends GeneratedCriteria {
         protected Criteria() {

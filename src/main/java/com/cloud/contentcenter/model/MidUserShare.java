@@ -1,12 +1,14 @@
 package com.cloud.contentcenter.model;
 
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * mid_user_share
- * @author 
+ *
+ * @author
  */
 @Data
 public class MidUserShare implements Serializable {

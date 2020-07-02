@@ -71,13 +71,13 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
             <version>2.2.1.RELEASE</version>
-<!--            阻止和sentinel客户端通信因为测试连接Alibaba的 AHAS 服务-->
-          <!--  <exclusions>
-                <exclusion>
-                    <groupId>com.alibaba.csp</groupId>
-                    <artifactId>sentinel-transport-simple-http</artifactId>
-                </exclusion>
-            </exclusions>-->
+            <!--            阻止和sentinel客户端通信因为测试连接Alibaba的 AHAS 服务-->
+            <!--  <exclusions>
+                  <exclusion>
+                      <groupId>com.alibaba.csp</groupId>
+                      <artifactId>sentinel-transport-simple-http</artifactId>
+                  </exclusion>
+              </exclusions>-->
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -116,7 +116,7 @@
               <artifactId>spring-boot-starter-ahas-sentinel-client</artifactId>
               <version>1.6.3</version>
           </dependency>-->
-<!--        sentinel 配置拉模式 使用的此模式让sentinel配置持久化,配置文件存到本地文件中-->
+        <!--        sentinel 配置拉模式 使用的此模式让sentinel配置持久化,配置文件存到本地文件中-->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
             <artifactId>sentinel-datasource-extension</artifactId>
@@ -131,12 +131,12 @@
             <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
             <version>0.9.0.RELEASE</version>
         </dependency>
-<!--        sentinel 配置推模式-->
-     <!--   <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-datasource-nacos</artifactId>
-        </dependency>
--->
+        <!--        sentinel 配置推模式-->
+        <!--   <dependency>
+               <groupId>com.alibaba.csp</groupId>
+               <artifactId>sentinel-datasource-nacos</artifactId>
+           </dependency>
+   -->
     </dependencies>
     <dependencyManagement>
         <!--Spring Cloud-->

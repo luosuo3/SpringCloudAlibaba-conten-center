@@ -9,15 +9,15 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-#        namespace: 5aee0e1b-51f7-414b-908b-c773f389b047
+        #        namespace: 5aee0e1b-51f7-414b-908b-c773f389b047
         cluster-name: BEIJING
     sentinel:
       filter:
         url-patterns: /**
-#        暂时打开对 Sping MVC 端点的保护
+        #        暂时打开对 Sping MVC 端点的保护
         enabled: true
       transport:
-#        指定控制台sentinel的地址
+        #        指定控制台sentinel的地址
         dashboard: localhost:8080
     stream:
       rocketmq:
@@ -30,17 +30,17 @@ spring:
               group: tx-add-bonus-group
       bindings:
         output:
-#          指定topic
+          #          指定topic
           destination: add-bonus
-#        my-output:
-#          destination: stream-my-topic
+  #        my-output:
+  #          destination: stream-my-topic
   application:
     name: content-center
   main:
     allow-bean-definition-overriding: true
 
 mybatis:
-  mapper-locations : classpath:/mapper/**Mapper.xml
+  mapper-locations: classpath:/mapper/**Mapper.xml
 server:
   port: 8090
 #细粒化配置
@@ -50,20 +50,20 @@ server:
 ribbon:
   eager-load:
     enabled: true
-#    对user-center饥饿加载
+    #    对user-center饥饿加载
     clients: user-center
 logging:
   level:
-    com.cloud : debug
-    com.cloud.contentcenter.feignclient.UserCenterFeignClient : debug
+    com.cloud: debug
+    com.cloud.contentcenter.feignclient.UserCenterFeignClient: debug
 feign:
   sentinel:
-#    为Feign整合sentinel
+    #    为Feign整合sentinel
     enabled: true
   client:
     config:
-#      user-center:
-       default:
+      #      user-center:
+      default:
         loggerLevel: basic
   httpclient:
     enabled: false

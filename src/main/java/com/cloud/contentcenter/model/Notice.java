@@ -2,11 +2,13 @@ package com.cloud.contentcenter.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.Data;
 
 /**
  * notice
- * @author 
+ *
+ * @author
  */
 @Data
 public class Notice implements Serializable {

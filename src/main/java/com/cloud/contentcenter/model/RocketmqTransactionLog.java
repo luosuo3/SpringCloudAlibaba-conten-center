@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * rocketmq_transaction_log
- * @author 
+ *
+ * @author
  */
 @Data
 @Builder

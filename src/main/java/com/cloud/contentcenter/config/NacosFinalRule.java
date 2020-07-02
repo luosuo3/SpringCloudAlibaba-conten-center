@@ -12,6 +12,7 @@ import com.netflix.loadbalancer.Server;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.CollectionUtils;
+
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;

@@ -18,9 +18,10 @@ import javax.annotation.Resource;
  * @date 2020/6/24 8:16 下午
  */
 @Slf4j
-public class NacosWeightedRule  extends AbstractLoadBalancerRule {
+public class NacosWeightedRule extends AbstractLoadBalancerRule {
     @Resource
     private NacosDiscoveryProperties nacosDiscoveryProperties;
+
     @Override
     public void initWithNiwsConfig(IClientConfig iClientConfig) {
 //             读取配置文件并且初始化
@@ -35,7 +36,7 @@ public class NacosWeightedRule  extends AbstractLoadBalancerRule {
             NamingService namingService = nacosDiscoveryProperties.namingServiceInstance();
 //        Nacos client 自动通过基于权重的负载均衡算法,给我们一个实例.
             Instance instance = namingService.selectOneHealthyInstance(name);
-            log.info("选择的实例是 port={},instance={}",instance.getPort(),instance);
+            log.info("选择的实例是 port={},instance={}", instance.getPort(), instance);
             return new NacosServer(instance);
         } catch (NacosException e) {
             return null;

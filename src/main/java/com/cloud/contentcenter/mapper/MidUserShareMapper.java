@@ -2,10 +2,12 @@ package com.cloud.contentcenter.mapper;
 
 import com.cloud.contentcenter.model.MidUserShare;
 import com.cloud.contentcenter.model.MidUserShareExample;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface MidUserShareMapper {
     long countByExample(MidUserShareExample example);

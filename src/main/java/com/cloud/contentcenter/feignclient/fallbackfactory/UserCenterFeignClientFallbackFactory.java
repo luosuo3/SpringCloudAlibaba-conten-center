@@ -18,7 +18,7 @@ public class UserCenterFeignClientFallbackFactory implements FallbackFactory<Use
         return new UserCenterFeignClient() {
             @Override
             public UserDTO findById(Integer id) {
-                log.warn("远程调用被限流或者降级了!",throwable);
+                log.warn("远程调用被限流或者降级了!", throwable);
                 UserDTO userDTO = new UserDTO();
                 userDTO.setWxNickname("一个测试用户");
                 return userDTO;

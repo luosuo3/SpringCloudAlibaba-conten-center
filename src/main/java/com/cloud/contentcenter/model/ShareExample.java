@@ -1077,6 +1077,7 @@ public class ShareExample {
     }
 
     /**
+     *
      */
     public static class Criteria extends GeneratedCriteria {
         protected Criteria() {

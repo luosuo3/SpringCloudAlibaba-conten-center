@@ -18,10 +18,11 @@ import javax.annotation.Resource;
 @RequestMapping("/admin/shares")
 public class ShareAdminController {
     @Resource
-    private  ShareService shareService;
+    private ShareService shareService;
+
     @PutMapping("/audit/{id}")
     public Share auditById(@PathVariable Integer id, @RequestBody ShareAuditDTO auditDTO) {
 //        TODO 认证和授权
-        return shareService.auditById(id,auditDTO);
+        return shareService.auditById(id, auditDTO);
     }
 }

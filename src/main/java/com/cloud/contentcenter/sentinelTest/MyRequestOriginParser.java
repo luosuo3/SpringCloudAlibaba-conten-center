@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class MyRequestOriginParser implements RequestOriginParser {
     private static final String ALLOW = "origin";
+
     @Override
     public String parseOrigin(HttpServletRequest httpServletRequest) {
        /* String allow = httpServletRequest.getParameter(ALLOW);

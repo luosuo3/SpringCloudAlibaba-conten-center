@@ -2,10 +2,12 @@ package com.cloud.contentcenter.mapper;
 
 import com.cloud.contentcenter.model.Share;
 import com.cloud.contentcenter.model.ShareExample;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface ShareMapper {
     long countByExample(ShareExample example);

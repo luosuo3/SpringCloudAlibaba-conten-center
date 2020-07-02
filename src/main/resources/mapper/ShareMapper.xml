@@ -1,362 +1,366 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloud.contentcenter.mapper.ShareMapper">
-  <resultMap id="BaseResultMap" type="com.cloud.contentcenter.model.Share">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="is_original" jdbcType="BOOLEAN" property="isOriginal" />
-    <result column="author" jdbcType="VARCHAR" property="author" />
-    <result column="cover" jdbcType="VARCHAR" property="cover" />
-    <result column="summary" jdbcType="VARCHAR" property="summary" />
-    <result column="price" jdbcType="INTEGER" property="price" />
-    <result column="download_url" jdbcType="VARCHAR" property="downloadUrl" />
-    <result column="buy_count" jdbcType="INTEGER" property="buyCount" />
-    <result column="show_flag" jdbcType="BOOLEAN" property="showFlag" />
-    <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
-    <result column="reason" jdbcType="VARCHAR" property="reason" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.cloud.contentcenter.model.Share">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="is_original" jdbcType="BOOLEAN" property="isOriginal"/>
+        <result column="author" jdbcType="VARCHAR" property="author"/>
+        <result column="cover" jdbcType="VARCHAR" property="cover"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="download_url" jdbcType="VARCHAR" property="downloadUrl"/>
+        <result column="buy_count" jdbcType="INTEGER" property="buyCount"/>
+        <result column="show_flag" jdbcType="BOOLEAN" property="showFlag"/>
+        <result column="audit_status" jdbcType="VARCHAR" property="auditStatus"/>
+        <result column="reason" jdbcType="VARCHAR" property="reason"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, user_id, title, create_time, update_time, is_original, author, cover, summary,
+        price, download_url, buy_count, show_flag, audit_status, reason
+    </sql>
+    <select id="selectByExample" parameterType="com.cloud.contentcenter.model.ShareExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, user_id, title, create_time, update_time, is_original, author, cover, summary, 
-    price, download_url, buy_count, show_flag, audit_status, reason
-  </sql>
-  <select id="selectByExample" parameterType="com.cloud.contentcenter.model.ShareExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from share
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from share
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from share
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.cloud.contentcenter.model.ShareExample">
-    delete from share
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cloud.contentcenter.model.Share" useGeneratedKeys="true">
-    insert into share (user_id, title, create_time, 
-      update_time, is_original, author, 
-      cover, summary, price, 
-      download_url, buy_count, show_flag, 
-      audit_status, reason)
-    values (#{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{isOriginal,jdbcType=BOOLEAN}, #{author,jdbcType=VARCHAR}, 
-      #{cover,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
-      #{downloadUrl,jdbcType=VARCHAR}, #{buyCount,jdbcType=INTEGER}, #{showFlag,jdbcType=BOOLEAN}, 
-      #{auditStatus,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cloud.contentcenter.model.Share" useGeneratedKeys="true">
-    insert into share
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="isOriginal != null">
-        is_original,
-      </if>
-      <if test="author != null">
-        author,
-      </if>
-      <if test="cover != null">
-        cover,
-      </if>
-      <if test="summary != null">
-        summary,
-      </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="downloadUrl != null">
-        download_url,
-      </if>
-      <if test="buyCount != null">
-        buy_count,
-      </if>
-      <if test="showFlag != null">
-        show_flag,
-      </if>
-      <if test="auditStatus != null">
-        audit_status,
-      </if>
-      <if test="reason != null">
-        reason,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isOriginal != null">
-        #{isOriginal,jdbcType=BOOLEAN},
-      </if>
-      <if test="author != null">
-        #{author,jdbcType=VARCHAR},
-      </if>
-      <if test="cover != null">
-        #{cover,jdbcType=VARCHAR},
-      </if>
-      <if test="summary != null">
-        #{summary,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        #{price,jdbcType=INTEGER},
-      </if>
-      <if test="downloadUrl != null">
-        #{downloadUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="buyCount != null">
-        #{buyCount,jdbcType=INTEGER},
-      </if>
-      <if test="showFlag != null">
-        #{showFlag,jdbcType=BOOLEAN},
-      </if>
-      <if test="auditStatus != null">
-        #{auditStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="reason != null">
-        #{reason,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.cloud.contentcenter.model.ShareExample" resultType="java.lang.Long">
-    select count(*) from share
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update share
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.userId != null">
+        <include refid="Base_Column_List"/>
+        from share
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from share
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from share
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.cloud.contentcenter.model.ShareExample">
+        delete from share
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cloud.contentcenter.model.Share"
+            useGeneratedKeys="true">
+        insert into share (user_id, title, create_time,
+        update_time, is_original, author,
+        cover, summary, price,
+        download_url, buy_count, show_flag,
+        audit_status, reason)
+        values (#{userId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP}, #{isOriginal,jdbcType=BOOLEAN}, #{author,jdbcType=VARCHAR},
+        #{cover,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER},
+        #{downloadUrl,jdbcType=VARCHAR}, #{buyCount,jdbcType=INTEGER}, #{showFlag,jdbcType=BOOLEAN},
+        #{auditStatus,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cloud.contentcenter.model.Share"
+            useGeneratedKeys="true">
+        insert into share
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isOriginal != null">
+                is_original,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="cover != null">
+                cover,
+            </if>
+            <if test="summary != null">
+                summary,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="downloadUrl != null">
+                download_url,
+            </if>
+            <if test="buyCount != null">
+                buy_count,
+            </if>
+            <if test="showFlag != null">
+                show_flag,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="reason != null">
+                reason,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isOriginal != null">
+                #{isOriginal,jdbcType=BOOLEAN},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="cover != null">
+                #{cover,jdbcType=VARCHAR},
+            </if>
+            <if test="summary != null">
+                #{summary,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=INTEGER},
+            </if>
+            <if test="downloadUrl != null">
+                #{downloadUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="buyCount != null">
+                #{buyCount,jdbcType=INTEGER},
+            </if>
+            <if test="showFlag != null">
+                #{showFlag,jdbcType=BOOLEAN},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null">
+                #{reason,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.cloud.contentcenter.model.ShareExample" resultType="java.lang.Long">
+        select count(*) from share
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update share
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=INTEGER},
+            </if>
+            <if test="record.title != null">
+                title = #{record.title,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.isOriginal != null">
+                is_original = #{record.isOriginal,jdbcType=BOOLEAN},
+            </if>
+            <if test="record.author != null">
+                author = #{record.author,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cover != null">
+                cover = #{record.cover,jdbcType=VARCHAR},
+            </if>
+            <if test="record.summary != null">
+                summary = #{record.summary,jdbcType=VARCHAR},
+            </if>
+            <if test="record.price != null">
+                price = #{record.price,jdbcType=INTEGER},
+            </if>
+            <if test="record.downloadUrl != null">
+                download_url = #{record.downloadUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.buyCount != null">
+                buy_count = #{record.buyCount,jdbcType=INTEGER},
+            </if>
+            <if test="record.showFlag != null">
+                show_flag = #{record.showFlag,jdbcType=BOOLEAN},
+            </if>
+            <if test="record.auditStatus != null">
+                audit_status = #{record.auditStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="record.reason != null">
+                reason = #{record.reason,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update share
+        set id = #{record.id,jdbcType=INTEGER},
         user_id = #{record.userId,jdbcType=INTEGER},
-      </if>
-      <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.isOriginal != null">
         is_original = #{record.isOriginal,jdbcType=BOOLEAN},
-      </if>
-      <if test="record.author != null">
         author = #{record.author,jdbcType=VARCHAR},
-      </if>
-      <if test="record.cover != null">
         cover = #{record.cover,jdbcType=VARCHAR},
-      </if>
-      <if test="record.summary != null">
         summary = #{record.summary,jdbcType=VARCHAR},
-      </if>
-      <if test="record.price != null">
         price = #{record.price,jdbcType=INTEGER},
-      </if>
-      <if test="record.downloadUrl != null">
         download_url = #{record.downloadUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="record.buyCount != null">
         buy_count = #{record.buyCount,jdbcType=INTEGER},
-      </if>
-      <if test="record.showFlag != null">
         show_flag = #{record.showFlag,jdbcType=BOOLEAN},
-      </if>
-      <if test="record.auditStatus != null">
         audit_status = #{record.auditStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="record.reason != null">
-        reason = #{record.reason,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update share
-    set id = #{record.id,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      is_original = #{record.isOriginal,jdbcType=BOOLEAN},
-      author = #{record.author,jdbcType=VARCHAR},
-      cover = #{record.cover,jdbcType=VARCHAR},
-      summary = #{record.summary,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
-      download_url = #{record.downloadUrl,jdbcType=VARCHAR},
-      buy_count = #{record.buyCount,jdbcType=INTEGER},
-      show_flag = #{record.showFlag,jdbcType=BOOLEAN},
-      audit_status = #{record.auditStatus,jdbcType=VARCHAR},
-      reason = #{record.reason,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.contentcenter.model.Share">
-    update share
-    <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
+        reason = #{record.reason,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.cloud.contentcenter.model.Share">
+        update share
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isOriginal != null">
+                is_original = #{isOriginal,jdbcType=BOOLEAN},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="cover != null">
+                cover = #{cover,jdbcType=VARCHAR},
+            </if>
+            <if test="summary != null">
+                summary = #{summary,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=INTEGER},
+            </if>
+            <if test="downloadUrl != null">
+                download_url = #{downloadUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="buyCount != null">
+                buy_count = #{buyCount,jdbcType=INTEGER},
+            </if>
+            <if test="showFlag != null">
+                show_flag = #{showFlag,jdbcType=BOOLEAN},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="reason != null">
+                reason = #{reason,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.contentcenter.model.Share">
+        update share
+        set user_id = #{userId,jdbcType=INTEGER},
         title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isOriginal != null">
         is_original = #{isOriginal,jdbcType=BOOLEAN},
-      </if>
-      <if test="author != null">
         author = #{author,jdbcType=VARCHAR},
-      </if>
-      <if test="cover != null">
         cover = #{cover,jdbcType=VARCHAR},
-      </if>
-      <if test="summary != null">
         summary = #{summary,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
         price = #{price,jdbcType=INTEGER},
-      </if>
-      <if test="downloadUrl != null">
         download_url = #{downloadUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="buyCount != null">
         buy_count = #{buyCount,jdbcType=INTEGER},
-      </if>
-      <if test="showFlag != null">
         show_flag = #{showFlag,jdbcType=BOOLEAN},
-      </if>
-      <if test="auditStatus != null">
         audit_status = #{auditStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="reason != null">
-        reason = #{reason,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cloud.contentcenter.model.Share">
-    update share
-    set user_id = #{userId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      is_original = #{isOriginal,jdbcType=BOOLEAN},
-      author = #{author,jdbcType=VARCHAR},
-      cover = #{cover,jdbcType=VARCHAR},
-      summary = #{summary,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
-      download_url = #{downloadUrl,jdbcType=VARCHAR},
-      buy_count = #{buyCount,jdbcType=INTEGER},
-      show_flag = #{showFlag,jdbcType=BOOLEAN},
-      audit_status = #{auditStatus,jdbcType=VARCHAR},
-      reason = #{reason,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        reason = #{reason,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "user-center")
 public interface TestUserCenterFeigin {
     @GetMapping("/q")
-    UserDTO query(@SpringQueryMap  UserDTO userDTO);
+    UserDTO query(@SpringQueryMap UserDTO userDTO);
 
 }

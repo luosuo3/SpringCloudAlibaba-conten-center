@@ -93,5 +93,4 @@ public class ShareDTO {
     private String wxNickname;
 
 
-
 }

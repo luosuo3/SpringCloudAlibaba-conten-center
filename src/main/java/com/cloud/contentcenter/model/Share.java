@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * share
- * @author 
+ *
+ * @author
  */
 @Data
 @Builder
@@ -73,7 +74,7 @@ public class Share implements Serializable {
     private String downloadUrl;
 
     /**
-     * 下载数 
+     * 下载数
      */
     private Integer buyCount;
 

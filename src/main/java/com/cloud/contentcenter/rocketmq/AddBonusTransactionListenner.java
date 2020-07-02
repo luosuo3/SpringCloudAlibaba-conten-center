@@ -22,24 +22,25 @@ import java.util.List;
  * @author 王峥
  * @date 2020/6/30 10:17 上午
  */
-@RocketMQTransactionListener( txProducerGroup = "tx-add-bonus-group")
+@RocketMQTransactionListener(txProducerGroup = "tx-add-bonus-group")
 @Slf4j
 public class AddBonusTransactionListenner implements RocketMQLocalTransactionListener {
     @Resource
     private RocketmqTransactionLogMapper rocketmqTransactionLogMapper;
     @Resource
     private ShareService shareService;
+
     @Override
     public RocketMQLocalTransactionState executeLocalTransaction(Message message, Object o) {
         MessageHeaders headers = message.getHeaders();
-        Integer  shareId = Integer.valueOf((String) headers.get("share_id"));
-        String  transactionid = (String)headers.get(RocketMQHeaders.TRANSACTION_ID);
-        String dtoString = (String)headers.get("dto");
+        Integer shareId = Integer.valueOf((String) headers.get("share_id"));
+        String transactionid = (String) headers.get(RocketMQHeaders.TRANSACTION_ID);
+        String dtoString = (String) headers.get("dto");
         ShareAuditDTO shareAuditDTO = JSON.parseObject(dtoString, ShareAuditDTO.class);
-        log.info("id={}",shareId);
+        log.info("id={}", shareId);
         try {
-            shareService.auditByIdInDB(shareAuditDTO,shareId);
-            shareService.auditByIdWithRocketMqLog(shareId,shareAuditDTO,transactionid);
+            shareService.auditByIdInDB(shareAuditDTO, shareId);
+            shareService.auditByIdWithRocketMqLog(shareId, shareAuditDTO, transactionid);
             return RocketMQLocalTransactionState.COMMIT;
         } catch (Exception e) {
             return RocketMQLocalTransactionState.ROLLBACK;
@@ -49,7 +50,7 @@ public class AddBonusTransactionListenner implements RocketMQLocalTransactionLis
     @Override
     public RocketMQLocalTransactionState checkLocalTransaction(Message message) {
         MessageHeaders headers = message.getHeaders();
-        String  transactionid = (String)headers.get(RocketMQHeaders.TRANSACTION_ID);
+        String transactionid = (String) headers.get(RocketMQHeaders.TRANSACTION_ID);
         RocketmqTransactionLogExample rocketmqTransactionLogExample = new RocketmqTransactionLogExample();
         rocketmqTransactionLogExample.createCriteria().andTransactionIdEqualTo(transactionid);
         List<RocketmqTransactionLog> rocketmqTransactionLogs = this.rocketmqTransactionLogMapper.selectByExample(rocketmqTransactionLogExample);

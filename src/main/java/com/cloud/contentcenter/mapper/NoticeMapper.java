@@ -2,10 +2,12 @@ package com.cloud.contentcenter.mapper;
 
 import com.cloud.contentcenter.model.Notice;
 import com.cloud.contentcenter.model.NoticeExample;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface NoticeMapper {
     long countByExample(NoticeExample example);
