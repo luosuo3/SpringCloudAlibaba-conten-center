@@ -11,6 +11,8 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
+
 
 //@EnableFeignClients(defaultConfiguration = GlobalCenterFeignConfiguration.class)
 @EnableFeignClients
@@ -28,6 +30,12 @@ public class ContentCenterApplication {
     @LoadBalanced
     @SentinelRestTemplate
     public RestTemplate restTemplate() {
-        return new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setInterceptors(
+                Collections.singletonList(
+                        new TestRestTemplateTokenRelayInterceptor()
+                )
+        );
+        return restTemplate;
     }
 }

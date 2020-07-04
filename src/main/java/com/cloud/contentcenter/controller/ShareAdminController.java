@@ -1,5 +1,6 @@
 package com.cloud.contentcenter.controller;
 
+import com.cloud.contentcenter.auth.CheckAuthorization;
 import com.cloud.contentcenter.dto.ShareAuditDTO;
 import com.cloud.contentcenter.model.Share;
 import com.cloud.contentcenter.service.content.ShareService;
@@ -21,6 +22,7 @@ public class ShareAdminController {
     private ShareService shareService;
 
     @PutMapping("/audit/{id}")
+    @CheckAuthorization("admin")
     public Share auditById(@PathVariable Integer id, @RequestBody ShareAuditDTO auditDTO) {
 //        TODO 认证和授权
         return shareService.auditById(id, auditDTO);

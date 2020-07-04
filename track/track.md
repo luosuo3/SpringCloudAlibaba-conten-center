@@ -1,2 +1,3 @@
 SpringBootApplication->NacosWeightedRule->NacosWeightedRule:NacosDiscoveryProperties()
-NacosWeightedRule->
+NacosWeightedRule->TokenRelayRequestIntecepor->TokenRelayRequestIntecepor:TokenRelayRequestIntecepor()
+TokenRelayRequestIntecepor->

@@ -65,6 +65,8 @@ feign:
       #      user-center:
       default:
         loggerLevel: basic
+        requestInterceptors:
+          - com.cloud.contentcenter.feignclient.interceptor.TokenRelayRequestIntecepor
   httpclient:
     enabled: false
     max-connections: 200
@@ -77,6 +79,10 @@ management:
     web:
       exposure:
         include: '*'
+jwt:
+  secret: fafasdfsdfasdfasdffadsfdasfasdfas
+  # 有效期，单位秒，默认2周
+  expire-time-in-second: 1209600
 #resttemplate:
 #  sentinel:
 #    enabled: false
