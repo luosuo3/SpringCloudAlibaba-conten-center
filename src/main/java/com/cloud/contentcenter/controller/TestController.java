@@ -17,8 +17,10 @@ import com.cloud.contentcenter.sentinelTest.TestControllerFallbackHandlerClass;
 import com.cloud.contentcenter.service.content.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -43,6 +45,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RefreshScope
 public class TestController {
     @Resource
     RestTemplate restTemplate;
@@ -185,10 +188,10 @@ public class TestController {
     }
 
     @GetMapping("/tokenRelay/{userId}")
-    public  ResponseEntity<UserDTO> tokenRelay(@PathVariable("userId") String userId, HttpServletRequest request) {
+    public ResponseEntity<UserDTO> tokenRelay(@PathVariable("userId") String userId, HttpServletRequest request) {
         String token = request.getHeader("X-Token");
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("X-Token",token);
+        httpHeaders.add("X-Token", token);
         return restTemplate
                 .exchange(
                         "http://user-center/users/{userId}",
@@ -198,6 +201,7 @@ public class TestController {
                         userId
                 );
     }
+
     @Resource
     private Source source;
 
@@ -212,5 +216,11 @@ public class TestController {
         return "success";
     }
 
+    @Value("${your.configuration}")
+    private String yourConfiguration;
 
+    @GetMapping("/test-config")
+    public String testConfiguration() {
+        return this.yourConfiguration;
+    }
 }

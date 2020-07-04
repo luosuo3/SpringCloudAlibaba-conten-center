@@ -34,8 +34,7 @@ spring:
           destination: add-bonus
   #        my-output:
   #          destination: stream-my-topic
-  application:
-    name: content-center
+
   main:
     allow-bean-definition-overriding: true
 
