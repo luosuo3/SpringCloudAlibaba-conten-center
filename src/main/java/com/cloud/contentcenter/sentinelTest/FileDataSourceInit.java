@@ -142,7 +142,7 @@ public class FileDataSourceInit implements InitFunc {
     private void createFileIfNotExits(String filePath) throws IOException {
         File file = new File(filePath);
         if (!file.exists()) {
-            file.createNewFile();
+            boolean newFile = file.createNewFile();
         }
     }
 

@@ -1,5 +1,6 @@
 package com.cloud.contentcenter.feignclient.fallbackfactory;
 
+import com.cloud.contentcenter.dto.UserAddBonusDTO;
 import com.cloud.contentcenter.dto.UserDTO;
 import com.cloud.contentcenter.feignclient.UserCenterFeignClient;
 import feign.hystrix.FallbackFactory;
@@ -22,6 +23,12 @@ public class UserCenterFeignClientFallbackFactory implements FallbackFactory<Use
                 UserDTO userDTO = new UserDTO();
                 userDTO.setWxNickname("一个测试用户");
                 return userDTO;
+            }
+
+            @Override
+            public UserDTO addBonus(UserAddBonusDTO userAddBonusDTO) {
+                log.warn("远程调用被限流或者降级了!", throwable);
+                return null;
             }
         };
     }

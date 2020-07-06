@@ -2,7 +2,10 @@ package com.cloud.contentcenter.model;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -11,6 +14,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MidUserShare implements Serializable {
     private Integer id;
 

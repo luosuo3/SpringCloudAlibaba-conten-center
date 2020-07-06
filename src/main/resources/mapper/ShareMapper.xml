@@ -363,4 +363,13 @@
         reason = #{reason,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
+    <select id="selectByParam" resultType="com.cloud.contentcenter.model.Share">
+        select * from share
+        <where>
+            <if test="title!= null and title != ''">
+                title like CONCAT('%', #{title}, '%')
+            </if>
+            and audit_status = 'PASS'
+        </where>
+    </select>
 </mapper>

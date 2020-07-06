@@ -5,6 +5,14 @@ spring:
       username: root
       password: 123456789
       driver-class-name: com.mysql.cj.jdbc.Driver
+  zipkin:
+    base-url: http://localhost:9411/
+    discovery-client-enabled: false
+    sleuth:
+      sampler:
+        #      抽样率不丢失任何数据达到100%
+        #      建议默认0.1不会影响性能
+        probability: 1.0
   cloud:
     nacos:
       discovery:
@@ -32,6 +40,9 @@ spring:
         output:
           #          指定topic
           destination: add-bonus
+  application:
+    # 服务名称尽量用-，不要用_，不要用特殊字符
+    name: content-center
   #        my-output:
   #          destination: stream-my-topic
 
@@ -40,6 +51,9 @@ spring:
 
 mybatis:
   mapper-locations: classpath:/mapper/**Mapper.xml
+  configuration:
+#    解决类数据映射问题也可以吧resultType改成BaseResultMap
+    map-underscore-to-camel-case: true
 server:
   port: 8090
 #细粒化配置
@@ -85,7 +99,6 @@ jwt:
 #resttemplate:
 #  sentinel:
 #    enabled: false
-
 
 #rockermq配置
 #rocketmq:

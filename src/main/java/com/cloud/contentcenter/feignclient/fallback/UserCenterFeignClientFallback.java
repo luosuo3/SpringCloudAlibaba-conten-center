@@ -1,5 +1,6 @@
 package com.cloud.contentcenter.feignclient.fallback;
 
+import com.cloud.contentcenter.dto.UserAddBonusDTO;
 import com.cloud.contentcenter.dto.UserDTO;
 import com.cloud.contentcenter.feignclient.UserCenterFeignClient;
 import org.springframework.stereotype.Component;
@@ -11,9 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserCenterFeignClientFallback implements UserCenterFeignClient {
     @Override
+    public UserDTO addBonus(UserAddBonusDTO userAddBonusDTO) {
+        return null;
+    }
+
+    @Override
     public UserDTO findById(Integer id) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setWxNickname("一个测试用户");
-        return userDTO;
+       return null;
     }
 }

@@ -1,5 +1,6 @@
 package com.cloud.contentcenter.mapper;
 
+import com.cloud.contentcenter.dto.ShareDTO;
 import com.cloud.contentcenter.model.Share;
 import com.cloud.contentcenter.model.ShareExample;
 
@@ -32,4 +33,5 @@ public interface ShareMapper {
 
     int updateByPrimaryKey(Share record);
 
+    List<Share> selectByParam(String title);
 }
