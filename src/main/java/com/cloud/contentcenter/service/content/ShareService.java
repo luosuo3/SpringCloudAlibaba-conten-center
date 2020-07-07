@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
-public class ShareService {
+public class  ShareService {
     @Resource
     private MidUserShareMapper midUserShareMapper;
     @Resource
